@@ -1,0 +1,49 @@
+{
+  "name": "basic_experiment",
+  "n_gpu": 0,
+  "arch": {
+    "type": "DynamicModel",
+    "args": {
+      "input_dim": 1,
+      "output_dim": 1,
+      "hidden_layers": 2,
+      "hidden_units": 32,
+      "hidden_activation": "relu",
+      "output_activation": "linear"
+    }
+  },
+  "data_loader": {
+    "type": "FunctionDataLoader",
+    "args": {
+      "data_dir": null,
+      "batch_size": 32,
+      "shuffle": true,
+      "validation_split": 0.1,
+      "num_workers": 0,
+      "function": "linear",
+      "n_samples": 500
+    }
+  },
+  "optimizer": {
+    "type": "Adam",
+    "args": {
+      "lr": 0.01
+    }
+  },
+  "lr_scheduler": {
+    "type": "StepLR",
+    "args": {
+      "step_size": 20,
+      "gamma": 0.5
+    }
+  },
+  "loss": "mse",
+  "metrics": ["mse", "mae", "r2", "rmse"],
+  "trainer": {
+    "epochs": 50,
+    "save_dir": "saved/",
+    "verbosity": 2,
+    "save_period": 10,
+    "tensorboard": true
+  }
+}
